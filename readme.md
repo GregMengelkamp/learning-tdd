@@ -36,4 +36,5 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 ##### 3rd sub-problem: allow division
 
 - you now know the drill...
--
+- observations: Go is so not dynamically typed Qq..., new way of testing by comparing whole structs/objects (actual and expected)
+- refactor: helper function in Go, deepStrictEqual and inlining call of arithmetic method in JS, overwrite of eq-method to compare objects directly not only by reference but also by value
