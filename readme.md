@@ -31,3 +31,9 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 - write failing test
 - implement what's necessary
 - refactor: remove (logical coupling) _which is often root of duplicated code_ and tidy things up
+  - realization: money abstracts dollar. refactor dollar due to DRY principle
+
+##### 3rd sub-problem: allow division
+
+- you now know the drill...
+-

@@ -1,14 +1,6 @@
 import unittest
 
 
-class Dollar:
-    def __init__(self, amount):
-        self.amount = amount
-
-    def times(self, multiplier):
-        return Dollar(self.amount * multiplier)
-
-
 class Money:
     def __init__(self, amount, currency):
         self.amount = amount
@@ -21,12 +13,13 @@ class Money:
 # creating testclass inherting from unittest.TestCase - soweit so bekannt aus div. Videos
 class TestMoney(unittest.TestCase):
     # first test(+method) - create fiver & tenner
-    def testMultiplication(self):
-        fiver = Dollar(5)
+    def testMultiplicationInDollars(self):
+        fiver = Money(5, "USD")
         tenner = fiver.times(2)
 
         # actual value vs expected value with assertEqual expression from unittest
         self.assertEqual(10, tenner.amount)
+        self.assertEqual("USD", tenner.currency)
 
     # testcase for the new Money class
     def testMultiplicationInEuros(self):
