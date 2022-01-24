@@ -17,3 +17,14 @@ func TestMultiplication(t *testing.T) {
 		t.Errorf("Expected 10, got: [%d]", tenner.amount)
 	}
 }
+
+// introducing a Dollar struct
+type Dollar struct {
+	// adding amount field
+	amount int
+	}
+
+// implementing the simplest working, hence hardcoded Times solution
+func (d Dollar) Times(multiplier int) Dollar {
+	return Dollar{10}
+	}

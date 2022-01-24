@@ -15,3 +15,11 @@ So at the moment I'm mainly concerned with the "how?" and that's where I came ac
 _by Saleem Siddiqui_
 
 The blurb appealed to me, as did the structure after a first skim. I also like to take the opportunity to get to know "Go" and to expand and consolidate my knowledge of JavaScript.
+
+### Below I will provide a summary of the project for my own review if you're interested.
+
+#### 1st Problem: building a multi-currency spreadsheet to track a stock portfolio for example
+
+##### 1st sub-problem which is also the first feature to be implemented 5 USD × 2 = 10 USD
+
+- write failing test.

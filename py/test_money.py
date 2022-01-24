@@ -1,5 +1,14 @@
 import unittest
 
+
+class Dollar:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def times(self, multiplier):
+        return Dollar(10)
+
+
 # creating testclass inherting from unittest.TestCase - soweit so bekannt aus div. Videos
 class TestMoney(unittest.TestCase):
     # first test(+method) - create fiver & tenner
