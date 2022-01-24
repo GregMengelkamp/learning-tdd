@@ -20,6 +20,14 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 
 #### 1st Problem: building a multi-currency spreadsheet to track a stock portfolio for example
 
-##### 1st sub-problem which is also the first feature to be implemented 5 USD × 2 = 10 USD
+##### 1st sub-problem: first feature to be implemented 5 USD × 2 = 10 USD
 
-- write failing test.
+- write failing test
+- implement what's necessary
+- refactor: remove (logical coupling) _which is often root of duplicated code_ and tidy things up
+
+##### 2nd sub-problem: abstract a **dollar** to genereic money which encapsules a value and a currency
+
+- write failing test
+- implement what's necessary
+- refactor: remove (logical coupling) _which is often root of duplicated code_ and tidy things up
