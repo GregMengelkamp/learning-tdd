@@ -8,7 +8,8 @@ class Dollar {
     }
     // times function with multiplier parameter -> w/o explicit return type gives undefined
     times(multiplier) {
-        return new Dollar(10)
+        // from hardcoded ten to "destructured" 10; revealing the abstractions -> multiplication, removed duplication and coupling
+        return new Dollar(this.amount * multiplier)
     }
 }
 
