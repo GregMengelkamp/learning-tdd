@@ -33,6 +33,27 @@ func TestDivision(t *testing.T) {
 	assertEqual(t, expectedResult, actualResult)
 }
 
+// doesn't it look like pascal a lot?! ":="
+func TestAddition(t *testing.T) {
+	// empty portfolio; emphasizing expected types!
+	var portfolio Portfolio
+	var portfolioInDollars Money
+
+	fiveDollars := Money{amount: 5, currency: "USD"}
+	tenDollars := Money{amount: 10, currency: "USD"}
+
+	// money entity to compare to
+	fifteenDollars := Money{amount: 15, currency: "USD"}
+
+	// adding money to portfolio
+	portfolio = portfolio.Add(fiveDollars)
+	portfolio = portfolio.Add(tenDollars)
+
+	// portfolio evaluate should return a money struct of specified currency
+	portfolioInDollars = portfolio.Evaluate("USD")
+	assertEqual(t, fifteenDollars, portfolioInDollars)
+}
+
 // introducing the new money struct with the necessary properties
 type Money struct {
 	amount   float64
@@ -46,4 +67,23 @@ func (m Money) Times(multiplier int) Money {
 
 func (m Money) Divide(divisor int) Money {
 	return Money{amount: m.amount / float64(divisor), currency: m.currency}
+}
+
+// an array of money entities
+type Portfolio []Money
+// returns the portfolio itself atm
+// append ( to what, what to append )
+func (p Portfolio) Add(money Money) Portfolio {
+	p = append(p, money)
+	return p
+}
+
+// returns the hardcoded correct amount (least amount of code posssible to pass...)
+// returns actual amounts; iteration a mix of enumerate python & strong pascal resemblance
+func (p Portfolio) Evaluate(currency string) Money {
+	total := 0.0
+	for _, m := range p {
+		total = total + m.amount
+	}
+	return Money{amount: total, currency: currency}
 }

@@ -1,5 +1,8 @@
 import unittest
 
+import functools
+import operator
+
 
 class Money:
     def __init__(self, amount, currency):
@@ -14,6 +17,20 @@ class Money:
 
     def divide(self, divisor):
         return Money(self.amount / divisor, self.currency)
+
+
+class Portfolio:
+    def __init__(self):
+        self.moneys = []
+
+    def add(self, *moneys):
+        # should have another look at common methods for iterables..."extend list by appending elements from iterable"
+        self.moneys.extend(moneys)
+
+    def evaluate(self, currency):
+        # map the moneys array to an array of all amounts, reduce the new array by adding; rather functional python approach
+        total = functools.reduce(operator.add, map(lambda m: m.amount, self.moneys), 0)
+        return Money(total, currency)
 
 
 # creating testclass inherting from unittest.TestCase - soweit so bekannt aus div. Videos
@@ -38,6 +55,14 @@ class TestMoney(unittest.TestCase):
         actualMoneyAfterDivision = originalMoney.divide(4)
         expectedMoneyAfterDivision = Money(1000.5, "KRW")
         self.assertEqual(actualMoneyAfterDivision, expectedMoneyAfterDivision)
+
+    def testAddition(self):
+        fiveDollars = Money(5, "USD")
+        tenDollars = Money(10, "USD")
+        fifteenDollars = Money(15, "USD")
+        portfolio = Portfolio()
+        portfolio.add(fiveDollars, tenDollars)
+        self.assertEqual(fifteenDollars, portfolio.evaluate("USD"))
 
 
 # run all tests if ran as main

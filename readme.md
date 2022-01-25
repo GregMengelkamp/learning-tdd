@@ -38,3 +38,12 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 - you now know the drill...
 - observations: Go is so not dynamically typed Qq..., new way of testing by comparing whole structs/objects (actual and expected)
 - refactor: helper function in Go, deepStrictEqual and inlining call of arithmetic method in JS, overwrite of eq-method to compare objects directly not only by reference but also by value
+
+##### 4th sub problem: addition of different currencies
+
+- _5 USD + 10 EUR = 17 USD adding dollars to dollars results in dollars_; exploring problem **domain** to discover new
+  entities, relationships, functions, and methods; outcome: collection of currencies (portfolio) that should be able to evaluate;
+  a test to add two Money entities in the same currency, using the Portfolio as a new entity
+- you define how fast you want to go; start with trivial implementations; adding the same currencies first; mixing currencies would require exchange rates which are not conceptualized yet
+-
+- observations: answering the question **test-drive or use “refactoring budget” (while you have green tests) to do it?**; forces "design thinking" and determines speed
