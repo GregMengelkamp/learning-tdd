@@ -47,3 +47,15 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 - you define how fast you want to go; start with trivial implementations; adding the same currencies first; mixing currencies would require exchange rates which are not conceptualized yet
 -
 - observations: answering the question **test-drive or use “refactoring budget” (while you have green tests) to do it?**; forces "design thinking" and determines speed
+
+##### recap // new stuff
+
+- logical coupling is often times equivalent to duplicated code - DRY principle
+- eq-method in python checks equality by reference by default
+- explore a problem _domain_ to come up with new entities, relationsships, functions and methods
+- don't fear to start with trivial implementations
+- Dependency injection: separate creation of an object from usage -> increases cohesion, reduces coupling
+- you can be pretty functional with python
+- sometimes statically typed languages are not completely awful
+
+- separate source files, still one package; package management in Go
