@@ -70,3 +70,9 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 - refactor:
 
 - newly learned about the _transformation priority premise_, "comma, ok" idiom in Go, structs can implement one or more interfaces in Go, lambda can get messy quickly in python, no simple way to catch exceptions with lambds,
+
+##### 6th sub problem: unclutter code, avoid dependecies and duplications
+
+- red: domain driven design (ddd) related a bank entity makes sense to take care of the currency exchange. it shouldn't be a responsibility associated with a portfolio; writing tests for conversion with a bank
+- green: implementing and injecting _bank_ to the portfolio.evaluate, using the key to directly form errormessages
+- refactor: deleting the former portfolio.conversion functions, updating the tests to reflect changes to portfolio.evaluate requiring a bank
