@@ -48,6 +48,21 @@ class MoneyTest {
 		assert.deepStrictEqual(portfolio.evaluate('KRW'), expectedValue);
 	}
 
+	testAdditionWithMultipleMissingExchangeRates() {
+		let oneDollar = new Money(1, 'USD');
+		let oneEuro = new Money(1, 'EUR');
+		let oneWon = new Money(1, 'KRW');
+		let portfolio = new Portfolio();
+		portfolio.add(oneDollar, oneEuro, oneWon);
+		let expectedError = new Error(
+			'Missing exchange rate(s):[USD->Kalganid,EUR->Kalganid,KRW->Kalganid]',
+		);
+		// assert.throws takes reference to an anonymous function that calls the evaluate
+		assert.throws(function () {
+			portfolio.evaluate('Kalganid');
+		}, expectedError);
+	}
+
 	// get all (own )properties of a MoneyTest prototype
 	getAllTestMethods() {
 		let moneyPrototype = MoneyTest.prototype;

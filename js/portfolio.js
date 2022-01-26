@@ -10,11 +10,21 @@ class Portfolio {
 	}
 
 	evaluate(currency) {
-		// using reduce outside of webdev or fn-examples in JS for the first time, i feel; moneys is missing
+		let failures = [];
 		let total = this.moneys.reduce((sum, money) => {
-			return sum + this.convert(money, currency);
+			let convertedAmount = this.convert(money, currency);
+			// catch every unsuccessful lookup in an array as an errormessage
+			if (convertedAmount === undefined) {
+				failures.push(money.currency + '->' + currency);
+				return sum;
+			}
+			return sum + convertedAmount;
 		}, 0);
-		return new Money(total, currency);
+		// no elements in an array <-> !array.length
+		if (!failures.length) {
+			return new Money(total, currency);
+		}
+		throw new Error('Missing exchange rate(s):[' + failures.join() + ']');
 	}
 
 	convert(money, currency) {
@@ -26,7 +36,12 @@ class Portfolio {
 			return money.amount;
 		}
 		let key = money.currency + '->' + currency;
-		return money.amount * exchangeRates.get(key);
+		// map.get() returns undefined if they key doesn't exist
+		let rate = exchangeRates.get(key);
+		if (rate === undefined) {
+			return undefined;
+		}
+		return money.amount * rate;
 	}
 }
 

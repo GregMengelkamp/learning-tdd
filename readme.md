@@ -65,7 +65,8 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 ##### 5th sub problem: conversion between currencies
 
 - some onsiderations concerning the problem domain: pair of currencies, definite **UNI**directional exchange rate, not always arithmetically reciprocal, currencies may be inconvertible
-- implement features sequentially by starting with a trivial approach if necessary; "destructure" and expand
-- added a working solution for converting EUR to USD; conversion between currencies with predefined values added
+- red: implement features sequentially by starting with a trivial approach if necessary; "destructure" and expand
+- green: added a working solution for converting EUR to USD; conversion between currencies with predefined values added, errorhandling for missing exchange rates
+- refactor:
 
-- newly learned about the _transformation priority premise_
+- newly learned about the _transformation priority premise_, "comma, ok" idiom in Go, structs can implement one or more interfaces in Go, lambda can get messy quickly in python, no simple way to catch exceptions with lambds,

@@ -1,5 +1,7 @@
 package stocks
 
+import "errors"
+
 type Portfolio []Money
 
 func (p Portfolio) Add(money Money) Portfolio {
@@ -7,23 +9,44 @@ func (p Portfolio) Add(money Money) Portfolio {
 	return p
 }
 
-func (p Portfolio) Evaluate(currency string) Money {
+func (p Portfolio) Evaluate(currency string) (Money, error) {
 	total := 0.0
+	failedConversions := make([]string, 0)
+	
+	// convert all currencies and capture errors
 	for _, m := range p {
-		total = total + convert(m, currency)
+		if convertedAmount, ok := convert(m, currency); ok {
+			total = total + convertedAmount
+			} else {
+			failedConversions = append(failedConversions,
+			m.currency+"->"+currency)
+			}
+		}
+		// if no errors occured return the total and 'nil' error
+		if len(failedConversions) == 0 {
+			return NewMoney(total, currency), nil
+		}
+		// if there are error, return an 'currencyless' zero and an error with the missing exchange rates
+		failures := "["
+		for _, f := range failedConversions {
+			failures = failures + f + ","
+		}
+		failures = failures + "]"
+		return NewMoney(0, ""),
+			errors.New("Missing exchange rate(s):" + failures)		
 	}
-	return Money{amount: total, currency: currency}
-}
 
-func convert(money Money, currency string) float64 {
+func convert(money Money, currency string) (float64, bool) {
 	exchangeRates := map[string]float64{
 		"EUR->USD": 1.2,
 		"USD->KRW": 1100,
 		}
 
 	if money.currency == currency {
-	return money.amount
+	return money.amount, true
 	}
 	key := money.currency + "->" + currency
-	return money.amount * exchangeRates[key]
+	// "comma, ok", lookup with a key returns successful lookup as second parameter
+	rate, ok := exchangeRates[key]
+	return money.amount * rate, ok
 	}
