@@ -4,7 +4,7 @@ const Portfolio = require('./portfolio');
 const Bank = require('./bank');
 
 class MoneyTest {
-	constructor() {
+	setUp() {
 		this.bank = new Bank();
 		this.bank.addExchangeRate('EUR', 'USD', 1.2);
 		this.bank.addExchangeRate('USD', 'KRW', 1100);
@@ -79,6 +79,12 @@ class MoneyTest {
 		bank.addExchangeRate('EUR', 'USD', 1.2);
 		let tenEuros = new Money(10, 'EUR');
 		assert.deepStrictEqual(bank.convert(tenEuros, 'USD'), new Money(12, 'USD'));
+
+		this.bank.addExchangeRate('EUR', 'USD', 1.3);
+		assert.deepStrictEqual(
+			this.bank.convert(tenEuros, 'USD'),
+			new Money(13, 'USD'),
+		);
 	}
 
 	testConversionWithMissingExchangeRate() {
@@ -108,6 +114,7 @@ class MoneyTest {
 			let method = Reflect.get(this, m);
 			console.log('Running: %s()', m);
 			try {
+				this.setUp();
 				Reflect.apply(method, this, []);
 			} catch (e) {
 				if (e instanceof assert.AssertionError) {
