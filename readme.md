@@ -66,3 +66,6 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 
 - some onsiderations concerning the problem domain: pair of currencies, definite **UNI**directional exchange rate, not always arithmetically reciprocal, currencies may be inconvertible
 - implement features sequentially by starting with a trivial approach if necessary; "destructure" and expand
+- added a working solution for converting EUR to USD; conversion between currencies with predefined values added
+
+- newly learned about the _transformation priority premise_

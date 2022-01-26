@@ -38,6 +38,16 @@ class MoneyTest {
 		assert.deepStrictEqual(portfolio.evaluate('USD'), expectedValue);
 	}
 
+	// assuming a unirectional exchangerate of 1100KRW/USD
+	testAdditionOfDollarsAndWons() {
+		let oneDollar = new Money(1, 'USD');
+		let elevenHundredWon = new Money(1100, 'KRW');
+		let portfolio = new Portfolio();
+		portfolio.add(oneDollar, elevenHundredWon);
+		let expectedValue = new Money(2200, 'KRW');
+		assert.deepStrictEqual(portfolio.evaluate('KRW'), expectedValue);
+	}
+
 	// get all (own )properties of a MoneyTest prototype
 	getAllTestMethods() {
 		let moneyPrototype = MoneyTest.prototype;
