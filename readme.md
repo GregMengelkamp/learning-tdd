@@ -59,3 +59,4 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 - sometimes statically typed languages are not completely awful
 
 - separate source files, still one package; package management in Go
+- Reflect is a very handy and interesting JS object
