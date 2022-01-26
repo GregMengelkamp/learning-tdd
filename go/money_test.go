@@ -1,8 +1,8 @@
 package main
 
 import (
-	"testing"
 	s "tdd/stocks"
+	"testing"
 )
 
 func assertEqual(t *testing.T, expected s.Money, actual s.Money) {
@@ -32,7 +32,7 @@ func TestAddition(t *testing.T) {
 	var portfolio s.Portfolio
 	var portfolioInDollars s.Money
 
-	fiveDollars := s.NewMoney(5,"USD")
+	fiveDollars := s.NewMoney(5, "USD")
 	tenDollars := s.NewMoney(10, "USD")
 
 	// money entity to compare to
@@ -47,5 +47,16 @@ func TestAddition(t *testing.T) {
 	assertEqual(t, fifteenDollars, portfolioInDollars)
 }
 
+// EUR -> USD with an exchange rate of 1.2USD/EUR
+func TestAdditionOfDollarsAndEuros(t *testing.T) {
+	var portfolio s.Portfolio
+	fiveDollars := s.NewMoney(5, "USD")
+	tenEuros := s.NewMoney(10, "EUR")
 
+	portfolio = portfolio.Add(fiveDollars)
+	portfolio = portfolio.Add(tenEuros)
 
+	expectedValue := s.NewMoney(17, "USD")
+	actualValue := portfolio.Evaluate("USD")
+	assertEqual(t, expectedValue, actualValue)
+}

@@ -61,3 +61,8 @@ The blurb appealed to me, as did the structure after a first skim. I also like t
 - separate source files, still one package; package management in Go
 - Reflect is a very handy and interesting JS object
 - circle: Where do you get the data you need to achieve what you want to do? (database, API, **Prototype!?**)
+
+##### 5th sub problem: conversion between currencies
+
+- some onsiderations concerning the problem domain: pair of currencies, definite **UNI**directional exchange rate, not always arithmetically reciprocal, currencies may be inconvertible
+- implement features sequentially by starting with a trivial approach if necessary; "destructure" and expand

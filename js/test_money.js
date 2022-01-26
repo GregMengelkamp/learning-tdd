@@ -28,6 +28,16 @@ class MoneyTest {
 		assert.deepStrictEqual(portfolio.evaluate('USD'), fifteenDollars);
 	}
 
+	// assuming a unirectional exchangerate of 1.2USD/EUR
+	testAdditionOfDollarsAndEuros() {
+		let fiveDollars = new Money(5, 'USD');
+		let tenEuros = new Money(10, 'EUR');
+		let portfolio = new Portfolio();
+		portfolio.add(fiveDollars, tenEuros);
+		let expectedValue = new Money(17, 'USD');
+		assert.deepStrictEqual(portfolio.evaluate('USD'), expectedValue);
+	}
+
 	// get all (own )properties of a MoneyTest prototype
 	getAllTestMethods() {
 		let moneyPrototype = MoneyTest.prototype;

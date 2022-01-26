@@ -26,6 +26,18 @@ class TestMoney(unittest.TestCase):
         portfolio.add(fiveDollars, tenDollars)
         self.assertEqual(fifteenDollars, portfolio.evaluate("USD"))
 
+    # assuming a unirectional exchangerate of 1.2USD/EUR
+    def testAdditionOfDollarsAndEuros(self):
+        fiveDollars = Money(5, "USD")
+        tenEuros = Money(10, "EUR")
+        portfolio = Portfolio()
+        portfolio.add(fiveDollars, tenEuros)
+        expectedValue = Money(17, "USD")
+        actualValue = portfolio.evaluate("USD")
+        self.assertEqual(
+            expectedValue, actualValue, "%s != %s" % (expectedValue, actualValue)
+        )
+
 
 # run all tests if ran as main
 if __name__ == "__main__":
